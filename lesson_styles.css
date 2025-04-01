@@ -1,0 +1,283 @@
+:root {
+    --primary-color: #4a6da7; /* Blue from Jay's wing */
+    --secondary-color: #2c3e50; /* Darker blue for contrast */
+    --accent-color: #e6846e; /* Soft pinkish-orange from Jay's body */
+    --accent-secondary: #8fbfe0; /* Light blue accent from Jay's wing */
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --correct-color: #28a745;
+    --incorrect-color: #dc3545;
+    --hover-color: #3a5a8c;
+    --card-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+    --border-radius: 8px;
+    --background-pattern: linear-gradient(135deg, rgba(255,255,255,0.05) 25%, transparent 25%, 
+                          transparent 50%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.05) 75%, 
+                          transparent 75%, transparent);
+    --pattern-size: 20px;
+}
+#lessonContent {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+#lessonContent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--jay-feather-pattern);
+}
+
+/* Lesson container */
+.lesson-container {
+    width: 100%;
+}
+
+.lesson-container h2 {
+    font-size: 24px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent-secondary);
+}
+
+.lesson-info {
+    margin-bottom: 30px;
+    color: #666;
+    font-size: 14px;
+    background-color: rgba(143, 191, 224, 0.1);
+    padding: 10px;
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--accent-secondary);
+}
+
+/* Vocabulary section */
+.vocabulary-section {
+    margin-bottom: 30px;
+}
+
+.vocabulary-section h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+    display: inline-block;
+    position: relative;
+}
+
+.vocabulary-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-color);
+}
+
+.vocabulary-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    width: 100%;
+}
+
+.vocabulary-item {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.vocabulary-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow);
+    border-color: var(--accent-secondary);
+}
+
+.vocabulary-item .word {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.vocabulary-item .translation {
+    color: #333;
+    font-size: 14px;
+}
+
+/* Exercises section */
+.exercises-section {
+    margin-bottom: 30px;
+}
+
+.exercises-section h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+    display: inline-block;
+    position: relative;
+}
+
+.exercises-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-color);
+}
+
+.exercise {
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    background-color: #f9f9f9;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.exercise::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: var(--accent-secondary);
+}
+
+.exercise h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* Multiple choice exercise */
+.multiple-choice-exercise .question {
+    font-weight: 500;
+    margin-bottom: 15px;
+    background-color: rgba(143, 191, 224, 0.1);
+    padding: 10px;
+    border-radius: var(--border-radius);
+}
+
+.multiple-choice-exercise .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.multiple-choice-exercise .option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    transition: all 0.2s;
+}
+
+.multiple-choice-exercise .option:hover {
+    background-color: rgba(143, 191, 224, 0.1);
+    border-color: var(--accent-secondary);
+}
+
+.multiple-choice-exercise .option.correct {
+    background-color: rgba(40, 167, 69, 0.1);
+    border: 1px solid var(--correct-color);
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.3);
+    transition: all 0.3s ease;
+}
+
+.multiple-choice-exercise .option.incorrect {
+    background-color: rgba(220, 53, 69, 0.1);
+    border: 1px solid var(--incorrect-color);
+    box-shadow: 0 0 5px rgba(220, 53, 69, 0.3);
+    transition: all 0.3s ease;
+}
+
+.check-answer-button {
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.check-answer-button:hover {
+    background-color: var(--hover-color);
+}
+
+/* Lesson navigation */
+.lesson-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.prev-lesson, .next-lesson {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.prev-lesson:hover, .next-lesson:hover {
+    background-color: var(--hover-color);
+}
+
+.prev-lesson:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.prev-lesson::before {
+    content: '←';
+    font-size: 1.2em;
+}
+
+.next-lesson::after {
+    content: '→';
+    font-size: 1.2em;
+}
+
+/* Media queries */
+@media (max-width: 840px) {
+    #lessonContent {
+        max-width: 100%;
+        padding: 15px;
+    }
+}

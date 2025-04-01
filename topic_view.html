@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="topicViewTitle">Topic - Indigenous Language Learning</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="forum_styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Cuneiform&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-feather-pointed"></i>
+            <h1 data-i18n="appTitle">Indigenous Language Learning</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" id="homeLink" data-i18n="home"><i class="fas fa-house"></i> Home</a></li>
+                <li><a href="#" id="progressLink" data-i18n="progress"><i class="fas fa-chart-simple"></i> Progress</a></li>
+                <li><a href="#" id="settingsLink" data-i18n="settings"><i class="fas fa-gear"></i> Settings</a></li>
+                <li><a href="forum.html" id="forumLink" data-i18n="forum" class="active-nav-link"><i class="fas fa-comments"></i> Forum</a></li>
+                <li><a href="signin.html" id="signInLink" data-i18n="signIn"><i class="fas fa-right-to-bracket"></i> Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="topicContent">
+        <div class="topic-container">
+            <div class="topic-navigation">
+                <a href="forum.html" class="back-link" data-i18n="backToForum"><i class="fas fa-arrow-left"></i> Back to Forum</a>
+            </div>
+            
+            <div id="topicDetails" class="topic-details">
+                <!-- Topic details will be loaded dynamically -->
+                <div class="loading-message" data-i18n="loadingTopic">
+                    <i class="fas fa-spinner fa-spin"></i> Loading topic...
+                </div>
+            </div>
+            
+            <div class="topic-replies">
+                <h3 data-i18n="replies"><i class="fas fa-reply-all"></i> Replies</h3>
+                <div id="repliesList" class="replies-list">
+                    <!-- Replies will be loaded dynamically -->
+                </div>
+            </div>
+            
+            <div class="reply-form-container" id="replyFormContainer">
+                <h3 data-i18n="postReply"><i class="fas fa-reply"></i> Post a Reply</h3>
+                <form id="replyForm">
+                    <div class="form-group">
+                        <textarea id="replyContent" name="replyContent" rows="4" required placeholder="Share your thoughts..."></textarea>
+                    </div>
+                    <button type="submit" class="primary-btn" data-i18n="submitReply"><i class="fas fa-paper-plane"></i> Submit Reply</button>
+                </form>
+                <div class="sign-in-to-reply" id="signInToReply">
+                    <p data-i18n="signInToReply">Please <a href="signin.html">sign in</a> to post a reply.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div id="languageContainer">
+                <label for="interfaceLanguageSelector" data-i18n="interfaceLanguage">Interface Language:</label>
+                <select id="interfaceLanguageSelector">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+            <p>&copy; 2025 Indigenous Language Learning Project</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="ui_langs.js"></script>
+    <script src="langs.js"></script>
+    <script src="lang.js"></script>
+    <script src="topic.js"></script>
+</body>
+</html>

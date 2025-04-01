@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="forumTitle">Community Forum - Indigenous Language Learning</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="forum_styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Cuneiform&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-feather-pointed"></i>
+            <h1 data-i18n="appTitle">Indigenous Language Learning</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" id="homeLink" data-i18n="home"><i class="fas fa-house"></i> Home</a></li>
+                <li><a href="#" id="progressLink" data-i18n="progress"><i class="fas fa-chart-simple"></i> Progress</a></li>
+                <li><a href="#" id="settingsLink" data-i18n="settings"><i class="fas fa-gear"></i> Settings</a></li>
+                <li><a href="forum.html" id="forumLink" class="forum"><i class="fas fa-comments"></i> Forum</a></li>
+                <li><a href="signin.html" id="signInLink" data-i18n="signIn"><i class="fas fa-right-to-bracket"></i> Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="forumContent">
+        <div class="hero-section forum-hero">
+            <h2 data-i18n="communityForumHero">Join Our Language Community</h2>
+            <p data-i18n="communityForumSubtext">Connect with fellow learners, share resources, and discuss indigenous languages</p>
+        </div>
+        
+        <div class="forum-container">
+            <div class="forum-header">
+                <h2 data-i18n="communityForum">Community Forum</h2>
+                <button id="newTopicBtn" class="primary-btn" data-i18n="newTopic"><i class="fas fa-plus"></i> New Topic</button>
+            </div>
+            
+            <div class="forum-categories">
+                <h3 data-i18n="categories"><i class="fas fa-folder"></i> Categories</h3>
+                <div class="category-list">
+                    <div class="category-item" data-category="general">
+                        <h4 data-i18n="generalDiscussion"><i class="fas fa-comments"></i> General Discussion</h4>
+                        <p data-i18n="generalDiscussionDesc">Discuss anything related to indigenous languages</p>
+                    </div>
+                    <div class="category-item" data-category="learning">
+                        <h4 data-i18n="learningTips"><i class="fas fa-lightbulb"></i> Learning Tips</h4>
+                        <p data-i18n="learningTipsDesc">Share and discover language learning strategies</p>
+                    </div>
+                    <div class="category-item" data-category="resources">
+                        <h4 data-i18n="resources"><i class="fas fa-book"></i> Resources</h4>
+                        <p data-i18n="resourcesDesc">Share books, websites, and other learning materials</p>
+                    </div>
+                    <div class="category-item" data-category="events">
+                        <h4 data-i18n="events"><i class="fas fa-calendar-alt"></i> Events</h4>
+                        <p data-i18n="eventsDesc">Upcoming language events and gatherings</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="forum-topics">
+                <h3 data-i18n="recentTopics"><i class="fas fa-clock"></i> Recent Topics</h3>
+                <div id="topicsList" class="topics-list">
+                    <!-- Topics will be loaded dynamically -->
+                    <div class="no-topics-message" data-i18n="noTopicsYet">No topics yet. Be the first to create one!</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- New Topic Modal -->
+        <div id="newTopicModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3 data-i18n="createNewTopic"><i class="fas fa-edit"></i> Create New Topic</h3>
+                <form id="newTopicForm">
+                    <div class="form-group">
+                        <label for="topicTitle" data-i18n="topicTitle"><i class="fas fa-heading"></i> Title:</label>
+                        <input type="text" id="topicTitle" name="topicTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="topicCategory" data-i18n="category"><i class="fas fa-folder"></i> Category:</label>
+                        <select id="topicCategory" name="topicCategory" required>
+                            <option value="general" data-i18n="generalDiscussion">General Discussion</option>
+                            <option value="learning" data-i18n="learningTips">Learning Tips</option>
+                            <option value="resources" data-i18n="resources">Resources</option>
+                            <option value="events" data-i18n="events">Events</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="topicContent" data-i18n="content"><i class="fas fa-align-left"></i> Content:</label>
+                        <textarea id="topicContent" name="topicContent" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="primary-btn" data-i18n="createTopic"><i class="fas fa-paper-plane"></i> Create Topic</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div id="languageContainer">
+                <label for="interfaceLanguageSelector" data-i18n="interfaceLanguage">Interface Language:</label>
+                <select id="interfaceLanguageSelector">
+                    <!-- Options will be populated dynamically -->
+                </select>
+            </div>
+            <p>&copy; 2025 Indigenous Language Learning Project</p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="ui_langs.js"></script>
+    <script src="langs.js"></script>
+    <script src="lang.js"></script>
+    <script src="forum.js"></script>
+</body>
+</html>

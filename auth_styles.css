@@ -1,0 +1,233 @@
+:root {
+    --primary-color: #4a6da7; /* Blue from Jay's wing */
+    --secondary-color: #2c3e50; /* Darker blue for contrast */
+    --accent-color: #e6846e; /* Soft pinkish-orange from Jay's body */
+    --accent-secondary: #8fbfe0; /* Light blue accent from Jay's wing */
+    --light-color: #f8f9fa;
+    --dark-color: #212529;
+    --correct-color: #28a745;
+    --incorrect-color: #dc3545;
+    --hover-color: #3a5a8c;
+    --card-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+    --border-radius: 8px;
+    --background-pattern: linear-gradient(135deg, rgba(255,255,255,0.05) 25%, transparent 25%, 
+                          transparent 50%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.05) 75%, 
+                          transparent 75%, transparent);
+    --pattern-size: 20px;
+}
+
+/* Auth Styles */
+.auth-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--jay-feather-pattern);
+}
+
+.auth-container h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.auth-container h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: var(--accent-color);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--secondary-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--accent-secondary);
+    box-shadow: 0 0 0 3px rgba(143, 191, 224, 0.2);
+}
+
+.auth-container button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.auth-container button:hover {
+    background-color: var(--hover-color);
+}
+
+.auth-container button i {
+    font-size: 1.1rem;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #666;
+}
+
+.auth-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.auth-link a:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
+.error-message {
+    color: var(--incorrect-color);
+    background-color: rgba(220, 53, 69, 0.1);
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    display: none;
+    border-left: 3px solid var(--incorrect-color);
+}
+
+.success-message {
+    color: var(--correct-color);
+    background-color: rgba(40, 167, 69, 0.1);
+    padding: 0.75rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    display: none;
+    border-left: 3px solid var(--correct-color);
+}
+
+/* Social Login Styles */
+.social-login {
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.social-login p {
+    margin-bottom: 15px;
+    color: #555;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-login p::before,
+.social-login p::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+    margin: 0 10px;
+}
+
+.social-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.2s;
+    min-width: 120px;
+}
+
+.social-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.social-btn i {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.google-btn {
+    background-color: #DB4437;
+}
+
+.discord-btn {
+    background-color: #7289DA;
+}
+
+.facebook-btn {
+    background-color: #3B5998;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .social-buttons {
+        flex-direction: column;
+    }
+    
+    .social-btn {
+        width: 100%;
+    }
+}
