@@ -1,4 +1,3 @@
-// Forum functionality
 $(document).ready(function() {
     // Initialize translations
     updateInterfaceLanguage();
