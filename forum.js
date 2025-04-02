@@ -26,6 +26,9 @@ $(document).ready(function() {
         
         // Show new topic modal
         $('#newTopicModal').css('display', 'block');
+        
+        // Populate language dropdown in the modal
+        populateLanguageOptions(document.getElementById('topicCategory'));
     });
     
     // Close modal when clicking on X
@@ -56,7 +59,7 @@ $(document).ready(function() {
         
         // Simple validation
         if (!title || !category || !content) {
-            const selectedLanguage = currentUser.language || 'English';
+            const selectedLanguage = getUserInterfaceLanguage();
             alert(uiTranslations[selectedLanguage].pleaseAllFields || 'Please fill in all fields');
             return;
         }

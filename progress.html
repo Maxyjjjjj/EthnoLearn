@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EthnoLearn - Learning Progress</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">EthnoLearn</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="languages.html">Languages</a></li>
+                <li><a href="forum.html">Forum</a></li>
+                <li><a href="progress.html" class="active">Progress</a></li>
+                <li><a href="settings.html">Settings</a></li>
+            </ul>
+            <div class="user-menu" id="userMenu">
+                <!-- User menu will be populated by JavaScript -->
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h1>Your Learning Progress</h1>
+        
+        <div id="loginPrompt" style="display: none;">
+            <p>Please <a href="signin.html">sign in</a> to view your progress.</p>
+        </div>
+        
+        <div id="progressContent">
+            <div class="language-selector">
+                <label for="progressLanguage">Select Language:</label>
+                <select id="progressLanguage">
+                    <!-- Languages will be populated dynamically -->
+                </select>
+            </div>
+            
+            <div class="progress-overview">
+                <h2>Overall Progress</h2>
+                <div class="progress-bar-container">
+                    <div id="overallProgressBar" class="progress-bar"></div>
+                    <span id="overallProgressPercent">0%</span>
+                </div>
+            </div>
+            
+            <div class="progress-details">
+                <h2>Lesson Progress</h2>
+                <div id="lessonProgressList">
+                    <!-- Lesson progress will be populated dynamically -->
+                </div>
+            </div>
+            
+            <div class="stats-section">
+                <h2>Learning Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Days Streak</h3>
+                        <p id="daysStreak">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Completed Lessons</h3>
+                        <p id="completedLessons">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Vocabulary Learned</h3>
+                        <p id="vocabularyLearned">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Total Time Spent</h3>
+                        <p id="timeSpent">0 hrs</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 EthnoLearn - Preserving Indigenous Languages</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="lang.js"></script>
+    <script src="progress.js"></script>
+</body>
+</html>
