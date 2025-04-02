@@ -186,24 +186,34 @@ function updateNavForLoggedInUser(user) {
 
 function updateInterfaceLanguage() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const languageSelect = $('#languageSelect');
+
+    // Populate language select with available languages
+    if (languageSelect.children().length === 0) {
+        Object.keys(uiTranslations).forEach(lang => {
+            languageSelect.append(`<option value="${lang}">${lang}</option>`);
+        });
+    }
 
     if (currentUser) {
-        const languageSelect = $('#languageSelect');
         const selectedLanguage = currentUser.language || 'English';
 
         // Set the selected language in the select element
         languageSelect.val(selectedLanguage);
 
+        // Remove existing event listener to prevent duplicates
+        languageSelect.off('change');
+
         // Add event listener to handle language change
         languageSelect.on('change', function() {
             const newLanguage = this.value;
-            localStorage.setItem('currentUser', JSON.stringify({ ...currentUser, language: newLanguage }));
-            updateInterfaceLanguage();
-            updateNavForLoggedInUser({ ...currentUser, language: newLanguage });
-            refreshLanguageGrid();
+            const updatedUser = { ...currentUser, language: newLanguage };
+            localStorage.setItem('currentUser', JSON.stringify(updatedUser));
             
-            // Update all text elements with new translations
+            updateNavForLoggedInUser(updatedUser);
+            refreshLanguageGrid();
             updatePageTranslations(newLanguage);
+            loadTopics(); // Refresh topics with new language
         });
         
         // Initial load of language grid and translations
@@ -218,7 +228,7 @@ function refreshLanguageGrid() {
     const languageGrid = $('#languageGrid');
     languageGrid.empty();
 
-    const selectedLanguage = currentUser.language || 'English';
+    const selectedLanguage = currentUser?.language || 'English';
     const languageData = uiTranslations[selectedLanguage];
     
     if (languageData) {

@@ -29,7 +29,8 @@ $(document).ready(function() {
             localStorage.setItem('currentUser', JSON.stringify({
                 id: user.id,
                 username: user.username,
-                email: user.email
+                email: user.email,
+                preferredLanguage: user.preferredLanguage || 'en'
             }));
             
             // Redirect to home page
@@ -75,6 +76,7 @@ $(document).ready(function() {
             username,
             email,
             password,
+            preferredLanguage: 'en',
             createdAt: new Date().toISOString()
         };
         
@@ -85,11 +87,33 @@ $(document).ready(function() {
         localStorage.setItem('currentUser', JSON.stringify({
             id: newUser.id,
             username: newUser.username,
-            email: newUser.email
+            email: newUser.email,
+            preferredLanguage: newUser.preferredLanguage
         }));
         
         // Redirect to home page
         window.location.href = 'index.html';
+    });
+
+    // Handle language selection
+    $('#languageSelect').on('change', function() {
+        const selectedLanguage = $(this).val();
+        setLanguage(selectedLanguage);
+        
+        // Update user's preferred language if logged in
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            currentUser.preferredLanguage = selectedLanguage;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            // Update in users array
+            const users = JSON.parse(localStorage.getItem('users') || '[]');
+            const userIndex = users.findIndex(u => u.id === currentUser.id);
+            if (userIndex !== -1) {
+                users[userIndex].preferredLanguage = selectedLanguage;
+                localStorage.setItem('users', JSON.stringify(users));
+            }
+        }
     });
 });
 
@@ -168,15 +192,19 @@ function updateInterfaceLanguage() {
         // User is not logged in or no preferred language, use current/default language
         setLanguage(currentLanguage);
     }
-    
-    // Update language in localStorage
-    localStorage.setItem('preferredLanguage', currentLanguage);
 }
 
 // Set interface language
 function setLanguage(language) {
     // Update language in localStorage
     localStorage.setItem('preferredLanguage', language);
+    
+    // Update language selector if it exists
+    const languageSelect = $('#languageSelect');
+    if (languageSelect.length) {
+        languageSelect.val(language);
+    }
+    
     // Update interface elements
     updateInterfaceElements(language);
 }
@@ -442,8 +470,7 @@ function fetchUserProfile(accessToken, provider) {
     const profileEndpoints = {
         google: 'https://www.googleapis.com/oauth2/v3/userinfo',
         discord: 'https://discord.com/api/users/@me',
-        twitter: 'https://api.twitter.com/2/users/me',
-        apple: '/api/auth/apple/user' // Apple requires server-side validation
+        facebook: 'https://graph.facebook.com/v13.0/me',
     };
     
     // Get the appropriate endpoint
@@ -503,20 +530,11 @@ function normalizeUserData(data, provider) {
                 : null;
             break;
             
-        case 'twitter':
-            user.id = data.data.id;
-            user.name = data.data.name;
-            // Twitter doesn't provide email by default
-            user.picture = data.data.profile_image_url;
-            break;
-            
-        case 'apple':
-            user.id = data.sub;
-            user.name = data.name?.firstName 
-                ? `${data.name.firstName} ${data.name.lastName || ''}`.trim()
-                : 'Apple User';
+        case "facebook":
+            user.id = data.id;
+            user.name = data.name;
             user.email = data.email;
-            // Apple doesn't provide profile pictures
+            user.picture = data.picture.data.url;
             break;
     }
     
